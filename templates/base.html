@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% endblock %}
+
+    {% block corecss %}
+    <!-- Bootstrap core CSS -->
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="static/css/base.css" rel="stylesheet">
+    {% endblock %}
+
+    <title>Step Uni - Planing your next education adventure!</title>
+</head>
+<body>
+
+
+{% block page_header %}
+ <!-- Navigation -->
+ <nav class="navbar navbar-light bg-light static-top">
+    <div class="container ">
+      <a class="navbar-brand text-info font-weight-bold" href="#"><img src="media/logo.png" alt="logo" class="img-logo">
+        STEPUNI </a>
+      <a class="btn btn-info" href="#">Sign In</a>
+    </div>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h1 class="mb-5"> Confused about what to study next? </h1>
+          <h4>Sign up now and we will help you to choose your
+            next education!</h4>
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+          <div class="col-12 col-md-4 offset-md-4">
+            <button onclick="" class="btn btn-block btn-lg btn-info mt-5">Sign up!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block postloadjs %}
+<script type="text/javascript">
+    $('.toast').toast('show');
+</script>
+{% endblock %}
+
+</body>
+</html>
