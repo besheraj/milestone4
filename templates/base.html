@@ -14,53 +14,107 @@
     {% block corecss %}
     <!-- Bootstrap core CSS -->
     <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
+    <!-- Custom styles  -->
     <link href="static/css/base.css" rel="stylesheet">
+    <!-- font awesome and icons -->
+    <link href="static/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="static/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
     {% endblock %}
 
     <title>Step Uni - Planing your next education adventure!</title>
 </head>
+
 <body>
+    <header>
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container ">
+                <a class="navbar-brand text-info font-weight-bold" href="#"><img src="media/logo.png" alt="logo"
+                        class="img-logo">
+                    STEPUNI </a>
+                <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+                    <li class="list-inline-item dropdown">
+                        <a href="#" class="btn btn-info" id="user-options" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">My Account</a>
+                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                            {% if request.user.is_authenticated %}
+                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                            {% else %}
+                            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    {% block page_header %}
+    {% endblock %}
 
+    {% block content %}
+    {% endblock %}
 
-{% block page_header %}
- <!-- Navigation -->
- <nav class="navbar navbar-light bg-light static-top">
-    <div class="container ">
-      <a class="navbar-brand text-info font-weight-bold" href="#"><img src="media/logo.png" alt="logo" class="img-logo">
-        STEPUNI </a>
-      <a class="btn btn-info" href="#">Sign In</a>
-    </div>
-  </nav>
-
-  <!-- Masthead -->
-  <header class="masthead text-white text-center">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h1 class="mb-5"> Confused about what to study next? </h1>
-          <h4>Sign up now and we will help you to choose your
-            next education!</h4>
+    {% block footer %}
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item">
+                            <a href="#">About</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Contact</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Terms of Use</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2020. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-facebook fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mr-3">
+                            <a href="#">
+                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-instagram fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <div class="col-12 col-md-4 offset-md-4">
-            <button onclick="" class="btn btn-block btn-lg btn-info mt-5">Sign up!</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-{% endblock %}
+    </footer>
+    {% endblock %}
 
-{% block content %}
-{% endblock %}
+    {% block loadjs %}
+    <!-- Bootstrap core JavaScript -->
+    <script src="static/jquery/jquery.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.bundle.min.js"></script>
+    {% endblock %}
 
-{% block postloadjs %}
-<script type="text/javascript">
-    $('.toast').toast('show');
-</script>
-{% endblock %}
+    {% block postloadjs %}
+    <script type="text/javascript">
+        $('.toast').toast('show');
+    </script>
+    {% endblock %}
 
 </body>
+
 </html>

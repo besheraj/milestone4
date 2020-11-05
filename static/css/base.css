@@ -17,15 +17,15 @@ h6 {
   width: 30px;
   position: inherit;
 }
-header.masthead {
+section.masthead {
   position: relative;
   background-color: #343a40;
-  background: url('/media/bg-masthead.jpg') no-repeat center center;
+  background: url(/media/bg-masthead.jpg) no-repeat center center;
   background-size: cover;
   padding-top: 8rem;
   padding-bottom: 8rem;
 }
-header.masthead .overlay {
+section.masthead .overlay {
   position: absolute;
   background-color: #212529;
   height: 100%;
@@ -34,15 +34,25 @@ header.masthead .overlay {
   left: 0;
   opacity: 0.3;
 }
-header.masthead h1 {
+section.masthead h1 {
   font-size: 2rem;
 }
+.showcase-img1 {
+    background-image: url('/media/bg-showcase-1.jpg');
+}
+.showcase-img2 {
+    background-image: url('/media/bg-showcase-2.jpg');
+}
+.showcase-img3 {
+    background-image: url('/media/bg-showcase-3.jpg');
+}
+
 @media (min-width: 768px) {
-  header.masthead {
+  section.masthead {
     padding-top: 12rem;
     padding-bottom: 12rem;
   }
-  header.masthead h1 {
+  section.masthead h1 {
     font-size: 3rem;
   }
 }
@@ -88,7 +98,7 @@ header.masthead h1 {
 .call-to-action {
   position: relative;
   background-color: #343a40;
-  background: url(../img/bg-masthead.jpg) no-repeat center center;
+  background: url('/media/bg-masthead.jpg') no-repeat center center;
   background-size: cover;
   padding-top: 7rem;
   padding-bottom: 7rem;
