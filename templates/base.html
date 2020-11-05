@@ -13,12 +13,12 @@
 
     {% block corecss %}
     <!-- Bootstrap core CSS -->
-    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
     <!-- Custom styles  -->
-    <link href="static/css/base.css" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
     <!-- font awesome and icons -->
-    <link href="static/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="static/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet" type="text/css">
     {% endblock %}
 
     <title>Step Uni - Planing your next education adventure!</title>
@@ -28,8 +28,7 @@
     <header>
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container ">
-                <a class="navbar-brand text-info font-weight-bold" href="#"><img src="media/logo.png" alt="logo"
-                        class="img-logo">
+                <a class="navbar-brand text-info font-weight-bold" href="#"><div class="logo"></div>
                     STEPUNI </a>
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     <li class="list-inline-item dropdown">
@@ -105,8 +104,8 @@
 
     {% block loadjs %}
     <!-- Bootstrap core JavaScript -->
-    <script src="static/jquery/jquery.min.js"></script>
-    <script src="static/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     {% endblock %}
 
     {% block postloadjs %}
