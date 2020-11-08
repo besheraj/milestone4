@@ -1,3 +1,24 @@
-{% extends 'base.html%}
+{% extends 'base.html' %}
 {% load static %}
 
+{% block content %}
+<section class="showcase mt-5">
+    <h1 class="text-center mb-5 text-info">Choose one of the following programs</h1>
+    <div class="container-fluid p-0">
+        <div class="row no-gutters">
+            {% for service in services %}
+
+            <div class="col-lg-6 order-lg-2 text-white service-img text-center ">
+                <img src="{{service.image_url}}" alt="{{service.name}}">
+            </div>
+            <div class="col-lg-6 order-lg-1 my-auto text-center">
+                <h2>{{service.name}}</h2>
+                <p class="lead mb-0">{{service.description}}</p>
+                <a class="btn btn-info" href="{% url 'quizz' service.id %}">Go to the Product</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

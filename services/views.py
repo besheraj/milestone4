@@ -6,16 +6,17 @@ from django.db.models.functions import Lower
 from .models import Service 
 
 # Create your views here.
-def all_services(request):
-    services = Service.object.all()
+def services(request):
+    services = Service.objects.all()
     context = {
         'services':services
     }
     return render(request, 'services/service.html', context)
 
-def products_details(request, service_id):
+
+def quizz(request, service_id):
     service = get_object_or_404(Service, pk=service_id)
     context = {
-        'services':service
+        'service':service
     }
-    return render(request, 'services/service_details.html', context)
+    return render(request, 'services/quizz.html', context)

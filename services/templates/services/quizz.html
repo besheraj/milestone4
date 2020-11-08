@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="showcase mt-5">
+    <h1 class="text-center mb-5 text-info">{{service.name}}</h1>
+    <div class="container-fluid p-0">
+        <div class="row no-gutters col-md-8 offset-md-3">
+            <iframe src="{{service.quizz}}" width="700" height="800" frameborder="0" marginheight="0"
+                marginwidth="0">Loading…</iframe>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
