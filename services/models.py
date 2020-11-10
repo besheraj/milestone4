@@ -8,5 +8,6 @@ class Service(models.Model):
     image_url = models.URLField(max_length=1024, null=True, blank=False)
     quizz = models.URLField(max_length=1024, null=True, blank=False)
 
+
     def __str__(self):
         return self.name

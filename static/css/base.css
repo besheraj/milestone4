@@ -72,7 +72,6 @@ section.masthead h1 {
 .allauth-form-inner-content input {
     border-color: #000;
     border-radius: 0;
-    margin: 15px 0 ;
 }
 
 
@@ -184,10 +183,7 @@ section.masthead h1 {
   margin: 0 auto;
 }
 
-
-
-
-/* styling for smaller screens */
+/* media styling */
 @media (min-width: 768px) {
   section.masthead {
     padding-top: 12rem;
