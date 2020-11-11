@@ -5,10 +5,10 @@ from .models import UserProfile
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('default_phone_number',
-                  'default_street_address1', 'default_street_address2',
-                  'default_town_or_city', 'default_postcode', 'default_country',
-                  'default_county',)
+        fields = ('main_phone_number',
+                  'main_street_address1', 'main_street_address2',
+                  'main_town_or_city', 'main_postcode', 'main_country',
+                  'main_county',)
 
     def __init__(self, *args, **kwargs):
         """
@@ -17,12 +17,12 @@ class UserProfileForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
-            'default_phone_number': 'Phone Number',
-            'default_postcode': 'Postal Code',
-            'default_town_or_city': 'Town or City',
-            'default_street_address1': 'Street Address 1',
-            'default_street_address2': 'Street Address 2',
-            'default_county': 'County, State or Locality',
+            'main_phone_number': 'Phone Number',
+            'main_postcode': 'Postal Code',
+            'main_town_or_city': 'Town or City',
+            'main_street_address1': 'Street Address 1',
+            'main_street_address2': 'Street Address 2',
+            'main_county': 'County, State or Locality',
         }
 
         self.fields['full_name'].widget.attrs['autofocus'] = True
