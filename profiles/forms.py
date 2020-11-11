@@ -17,17 +17,19 @@ class UserProfileForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
         placeholders = {
+            'main_full_name' : 'full_name',
             'main_phone_number': 'Phone Number',
             'main_postcode': 'Postal Code',
             'main_town_or_city': 'Town or City',
             'main_street_address1': 'Street Address 1',
             'main_street_address2': 'Street Address 2',
+            'main_country': 'Country',
             'main_county': 'County, State or Locality',
         }
 
-        self.fields['full_name'].widget.attrs['autofocus'] = True
+        # self.fields['full_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
-            if field != 'country':
+            if field != 'main_county':
                 if self.fields[field].required:
                     placeholder = f'{placeholders[field]} *'
                 else:

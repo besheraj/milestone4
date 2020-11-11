@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib import messages
@@ -7,9 +8,11 @@ from .forms import OrderForm
 from .models import Order
 
 from profiles.models import UserProfile
+from django.contrib.auth.models import User
 from profiles.forms import UserProfileForm
 
 import stripe
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -65,20 +68,20 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
-            # Attempt to prefill the form with any info the user maintains in their profile
+        # Attempt to prefill the form with any info the user maintains in their profile
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
                 order_form = OrderForm(initial={
-                    'full_name': profile.user.get_full_name(),
+                    'full_name': profile.main_full_name,
                     'email': profile.user.email,
-                    'phone_number': profile.default_phone_number,
-                    'country': profile.default_country,
-                    'postcode': profile.default_postcode,
-                    'town_or_city': profile.default_town_or_city,
-                    'street_address1': profile.default_street_address1,
-                    'street_address2': profile.default_street_address2,
-                    'county': profile.default_county,
+                    'phone_number': profile.main_phone_number,
+                    'country': profile.main_country,
+                    'postcode': profile.main_postcode,
+                    'town_or_city': profile.main_town_or_city,
+                    'street_address1': profile.main_street_address1,
+                    'street_address2': profile.main_street_address2,
+                    'county': profile.main_county,
                 })
             except UserProfile.DoesNotExist:
                 order_form = OrderForm()
@@ -97,6 +100,7 @@ def checkout(request):
     }
     return render(request, template, context)
 
+
 def checkout_success(request, order_number):
     """
     Handle successful checkouts
@@ -104,8 +108,10 @@ def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
+    print(request.user.id, request.user, request.user.username)
     if request.user.is_authenticated:
-        profile = UserProfile.objects.get(user=request.user)
+        user = User.objects.get(id=request.user.id)
+        profile = UserProfile.objects.get(user=user)
         # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
@@ -113,6 +119,7 @@ def checkout_success(request, order_number):
         # Save the user's info
         if save_info:
             profile_data = {
+                'fullname' : order.full_name,
                 'main_phone_number': order.phone_number,
                 'main_country': order.country,
                 'main_postcode': order.postcode,
@@ -125,7 +132,6 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
@@ -133,6 +139,6 @@ def checkout_success(request, order_number):
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
-        'total' : settings.PRICE
+        'total': settings.PRICE
     }
     return render(request, template, context)
