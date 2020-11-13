@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib import messages
@@ -8,7 +7,6 @@ from .forms import OrderForm
 from .models import Order
 
 from profiles.models import UserProfile
-from django.contrib.auth.models import User
 from profiles.forms import UserProfileForm
 
 import stripe
@@ -108,10 +106,8 @@ def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
-    print(request.user.id, request.user, request.user.username)
     if request.user.is_authenticated:
-        user = User.objects.get(id=request.user.id)
-        profile = UserProfile.objects.get(user=user)
+        profile = UserProfile.objects.get(user=request.user)
         # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
@@ -119,7 +115,7 @@ def checkout_success(request, order_number):
         # Save the user's info
         if save_info:
             profile_data = {
-                'fullname' : order.full_name,
+                'main_full_name': order.full_name,
                 'main_phone_number': order.phone_number,
                 'main_country': order.country,
                 'main_postcode': order.postcode,
