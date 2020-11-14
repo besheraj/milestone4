@@ -3,6 +3,8 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 
+from services.models import Service
+
 from .forms import OrderForm
 from .models import Order
 
@@ -28,9 +30,10 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 
-def checkout(request):
+def checkout(request, service_id):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
+    service = get_object_or_404(Service, pk=service_id)
 
     if request.method == 'POST':
 
@@ -51,6 +54,8 @@ def checkout(request):
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
+            service_name = Service.objects.get(id=service_id)
+            order.service_name = service_name
             order.save()
             # Save the info to the user's profile if all is well
             request.session['save_info'] = 'save-info' in request.POST
@@ -94,7 +99,8 @@ def checkout(request):
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
-        'total': settings.PRICE
+        'total': settings.PRICE,
+        'service':service
     }
     return render(request, template, context)
 
