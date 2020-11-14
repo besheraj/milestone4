@@ -1,9 +1,9 @@
-from stepuni.settings import TEMPLATES
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from .forms import UserProfileForm
+from django.conf import settings
 
 from checkout.models import Order
 
@@ -52,6 +52,8 @@ def order_history(request, order_number):
     context = {
         'order': order,
         'from_profile': True,
+        'total': settings.PRICE
+
     }
 
     return render(request, template, context)
@@ -65,8 +67,7 @@ def order_history_table(request):
     template = 'profiles/order_history.html'
     context = {
     'orders': orders,
-    'on_profile_page': True
-
+    'on_profile_page': True,
     }
 
     return render(request, template, context)
