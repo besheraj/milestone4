@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Barlow:wght@700&display=swap');
 /* General styling  */
 body {
-  font-family: "Lato",  Arial, sans-serif;
+    font-family: "Lato",  Arial, sans-serif;
 }
 h1,
 h2,
@@ -47,6 +47,8 @@ section.masthead .overlay {
 section.masthead h1 {
   font-size: 2rem;
 }
+
+/*profile show case*/
 .showcase-img1 {
     background-image: url('/media/bg-showcase-1.jpg');
 }
@@ -91,7 +93,7 @@ section.masthead h1 {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background-color: #000;
+    background-color: #5bc0de;
     border: 1px solid #000;
     padding: .375rem .75rem;
     font-size: 1rem;
@@ -114,7 +116,7 @@ section.masthead h1 {
 	color: #17a2b8; /* text-info */
 }
 
-/* ------------------------------- bootstrap toasts */
+/* -- bootstrap toasts */
 
 .message-container {
   position: fixed;
@@ -208,6 +210,7 @@ section.masthead h1 {
 .features-icons {
   padding-top: 7rem;
   padding-bottom: 7rem;
+    background-color: #4e555b;
 }
 .features-icons .features-icons-item {
   max-width: 20rem;
@@ -224,14 +227,13 @@ section.masthead h1 {
 
 .call-to-action {
   position: relative;
-  background-color: #343a40;
+  background-color: #ffffff;
   background-size: cover;
-  padding-top: 7rem;
-  padding-bottom: 7rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 .call-to-action .overlay {
   position: absolute;
-  background-color: #212529;
   height: 100%;
   width: 100%;
   top: 0;
@@ -239,6 +241,6 @@ section.masthead h1 {
   opacity: 0.3;
 }
 footer.footer {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
