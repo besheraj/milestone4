@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.conf import settings
 
@@ -14,6 +15,7 @@ from profiles.forms import UserProfileForm
 import stripe
 
 
+@login_required
 @require_POST
 def cache_checkout_data(request):
     try:
@@ -30,8 +32,9 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 
+@login_required
 def checkout(request, service_id):
-    # handels check out and stripe
+    #  for check out and stripe
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     service = get_object_or_404(Service, pk=service_id)
@@ -101,13 +104,13 @@ def checkout(request, service_id):
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
         'total': settings.PRICE,
-        'service':service
+        'service': service
     }
     return render(request, template, context)
 
 
+@login_required
 def checkout_success(request, order_number):
-
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
