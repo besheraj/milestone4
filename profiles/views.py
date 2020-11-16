@@ -17,7 +17,7 @@ def profile(request):
 
 @login_required
 def update_profile(request):
-    """ Display the user's profile. """
+    # Display the user's profile.
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
@@ -43,6 +43,7 @@ def update_profile(request):
 
 @login_required
 def order_history(request, order_number):
+    # display the order receipt
     order = get_object_or_404(Order, order_number=order_number)
 
     messages.info(request, (
@@ -63,6 +64,7 @@ def order_history(request, order_number):
 
 @login_required
 def order_history_table(request):
+    # display the order history
     profile = get_object_or_404(UserProfile, user=request.user)
     orders = profile.orders.all()
     template = 'profiles/order_history.html'

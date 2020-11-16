@@ -31,6 +31,7 @@ def cache_checkout_data(request):
 
 
 def checkout(request, service_id):
+    # handels check out and stripe
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     service = get_object_or_404(Service, pk=service_id)
@@ -71,7 +72,7 @@ def checkout(request, service_id):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
-        # Attempt to prefill the form with any info the user maintains in their profile
+        # prefill the user profile info if already stored before in profile
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
@@ -106,12 +107,11 @@ def checkout(request, service_id):
 
 
 def checkout_success(request, order_number):
-    """
-    Handle successful checkouts
-    """
+
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
+    # attach the order username with the profile user name
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
         # Attach the user's profile to the order

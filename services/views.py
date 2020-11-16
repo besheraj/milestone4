@@ -7,6 +7,7 @@ from .models import Service
 
 @login_required
 def services(request):
+    # display all quizes
     services = Service.objects.all()
     context = {
         'services': services
@@ -16,6 +17,7 @@ def services(request):
 
 @login_required
 def quizz(request, service_id):
+    # display a the quizz
     service = get_object_or_404(Service, pk=service_id)
     context = {
         'service': service
@@ -25,7 +27,7 @@ def quizz(request, service_id):
 
 @login_required()
 def add_quizz(request):
-    """ Add a service """
+    # add a quizz
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only the owners can do that.')
         return redirect(reverse('home'))
@@ -50,7 +52,7 @@ def add_quizz(request):
 
 @login_required
 def edit_quizz(request, service_id):
-    """ Edit a service """
+    # edit a quizz
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -79,7 +81,7 @@ def edit_quizz(request, service_id):
 
 @login_required
 def delete_quizz(request, service_id):
-    """ Delete a product from the store """
+    # delete a quizz
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))

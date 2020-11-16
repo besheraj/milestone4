@@ -18,4 +18,5 @@ class ProfileAdmin(admin.ModelAdmin):
 
     ordering = ('user',)
 
+
 admin.site.register(UserProfile, ProfileAdmin)

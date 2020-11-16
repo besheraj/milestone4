@@ -11,10 +11,8 @@ class UserProfileForm(forms.ModelForm):
                   'main_county',)
 
     def __init__(self, *args, **kwargs):
-        """
-        Add placeholders and classes, remove auto-generated
-        labels and set autofocus on first field
-        """
+
+        # add place holders
         super().__init__(*args, **kwargs)
         placeholders = {
             'main_full_name' : 'full_name',
@@ -26,8 +24,7 @@ class UserProfileForm(forms.ModelForm):
             'main_country': 'Country',
             'main_county': 'County, State or Locality',
         }
-
-        # self.fields['full_name'].widget.attrs['autofocus'] = True
+        # exempt country from having place holder and adding classes
         for field in self.fields:
             if field != 'main_county':
                 if self.fields[field].required:
