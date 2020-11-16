@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['stepuni.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['stepuni.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
