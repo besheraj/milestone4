@@ -2,38 +2,42 @@
 {% load static %}
 
 {% block content %}
+    <section class="container">
+        <div class="row header-container">
+            <div class="col">
+                <hr>
+                <h2 class="logo-font mb-4">Order History</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="col-12 col-lg-9 mt-5 mb-5">
+            <div class="order-history table-responsive">
+                <table class="table table-sm table-borderless ">
+                    <thead>
+                    <tr>
+                        <th>Order Number</th>
+                        <th>Date</th>
+                        <th>Items</th>
 
-<div class="col-12 col-lg-6">
-    <p class="text-muted">Order History</p>
-    <div class="order-history table-responsive">
-        <table class="table table-sm table-borderless">
-            <thead>
-                <tr>
-                    <th>Order Number</th>
-                    <th>Date</th>
-                    <th>Items</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                {% for order in orders %}
-                <tr>
-                    <td>
-                        <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">
-                            {{ order.order_number }}
-                        </a>
-                    </td>
-                    <td>{{ order.date }}</td>
-                    <td>
-                    <td>{{ order.service_name }}</td>
-                    <td>
-                        {% endfor %}
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-{% endblock%}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for order in orders %}
+                        <tr>
+                        <td>
+                            <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}"
+                               class="text-info">
+                                {{ order.order_number }}
+                            </a>
+                        </td>
+                        <td>{{ order.date }}</td>
+                        <td>{{ order.service_name }}</td>
+                    {% endfor %}
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a class="btn btn-info mb-5 mt-5" href="{% url 'profile' %}">Back to Start Page</a>
+        </div>
+    </section>
+{% endblock %}

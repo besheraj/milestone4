@@ -7,11 +7,13 @@ from django.conf import settings
 
 from checkout.models import Order
 
+
 @login_required
 def profile(request):
     template = 'profiles/profile.html'
 
     return render(request, template)
+
 
 @login_required
 def update_profile(request):
@@ -59,16 +61,14 @@ def order_history(request, order_number):
     return render(request, template, context)
 
 
-
 @login_required
 def order_history_table(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     orders = profile.orders.all()
     template = 'profiles/order_history.html'
     context = {
-    'orders': orders,
-    'on_profile_page': True,
+        'orders': orders,
+        'on_profile_page': True,
     }
 
     return render(request, template, context)
-
