@@ -5,68 +5,73 @@
 
 <head>
     {% block meta %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
     {% endblock %}
 
     {% block corecss %}
         <!-- Bootstrap core CSS -->
-    <link href="{% static 'bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+        <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
         <!-- font awesome and icons -->
-    <link href="{% static 'fontawesome-free/css/all.min.css' %}" rel="stylesheet">
-    <link href="{% static 'simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+        <link href="{% static 'simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet" type="text/css">
         <!-- Custom styles  -->
-    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+        <link href="{% static 'css/base.css' %}" rel="stylesheet">
     {% endblock %}
-    
+
     {% block extra_css %}
     {% endblock %}
-    
+
     {% block corejs %}
-    <!-- Stripe -->
-    <script src="https://js.stripe.com/v3/"></script>
+        <!-- Stripe -->
+        <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
 
     <title>Step Uni - Planing your next education adventure!</title>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-light bg-light static-top">
-            <div class="container ">
-                {% if request.user.is_authenticated %}
-                <a class="navbar-brand text-info font-weight-bold" href="{% url 'profile' %}"><div class="logo"></div>
+<header>
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container ">
+            {% if request.user.is_authenticated %}
+                <a class="navbar-brand text-info font-weight-bold" href="{% url 'profile' %}">
+                    <div class="logo"></div>
                     STEPUNI </a>
-                {% else %}
-                <a class="navbar-brand text-info font-weight-bold" href="{% url 'home' %}"><div class="logo"></div>
+            {% else %}
+                <a class="navbar-brand text-info font-weight-bold" href="{% url 'home' %}">
+                    <div class="logo"></div>
                     STEPUNI </a>
-                {% endif %}    
-                <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                    <li class="list-inline-item dropdown">
-                        <a href="#" class="btn btn-info" id="user-options" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">My Account</a>
-                        <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                            {% if request.user.is_authenticated %}
+            {% endif %}
+            <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+                <li class="list-inline-item dropdown">
+                    <a href="#" class="btn btn-info" id="user-options" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">My Account</a>
+                    <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.is_superuser %}
+                                <a class="btn btn-info mt-1" href="{% url 'add_quizz' %}">Add Quizz!</a>
+                            {% endif %}
                             <a href="{% url 'profile' %}" class="dropdown-item">Get Started!</a>
                             <a href="{% url 'update_profile' %}" class="dropdown-item">Update Profile</a>
                             <a href="{% url 'order_history_table' %}" class="dropdown-item">Order History</a>
                             <a href="{% url 'account_change_password' %}" class="dropdown-item">Change Your Password</a>
                             <a href="{% url 'account_email' %}" class="dropdown-item">Change Your Email</a>
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                            {% else %}
+                        {% else %}
                             <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
                             <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                            {% endif %}
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
-    {% if messages %}
+{% if messages %}
     <div class="message-container">
         {% for message in messages %}
             {% with message.level as level %}
@@ -82,13 +87,13 @@
             {% endwith %}
         {% endfor %}
     </div>
-    {% endif %}
-    
-    {% block page_header %}
-    {% endblock %}
+{% endif %}
 
-    {% block content %}
-    {% endblock %}
+{% block page_header %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
 
 {#    {% block footer %}#}
 {#    <footer class="footer bg-light">#}
@@ -138,17 +143,17 @@
 {#    </footer>#}
 {#    {% endblock %}#}
 
-    {% block loadjs %}
+{% block loadjs %}
     <!-- Bootstrap core JavaScript -->
     <script src="{% static 'jquery/jquery.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    {% endblock %}
+{% endblock %}
 
-    {% block postloadjs %}
+{% block postloadjs %}
     <script type="text/javascript">
         $('.toast').toast('show');
     </script>
-    {% endblock %}
+{% endblock %}
 
 </body>
 

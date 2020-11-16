@@ -15,7 +15,6 @@
                         <p class="lead mb-1">{{ service.description }}</p>
                         <a class="btn btn-info mt-1" href="{% url 'quizz' service.id %}">Start the Quizz!</a>
                         {% if request.user.is_superuser %}
-
                             <a class="btn btn-info mt-1" href="{% url 'edit_quizz' service.id %}">Edit the Quizz!</a>
                             <a class="btn btn-info mt-1" href="{% url 'delete_quizz' service.id %}">Delete the
                                 Quizz!</a>
