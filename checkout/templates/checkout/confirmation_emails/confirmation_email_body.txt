@@ -1,0 +1,19 @@
+Hello {{ order.full_name }}!
+
+This is a confirmation of your payment at Stepuni. Your order information are below:
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.date }}
+
+Quizz Name: ${{ order.service_name }}
+
+We have received your order, you will receive an email from our assessment team with
+the full report from us with in the next 2 working days.
+
+If you have any questions, feel free to contact us at {{ contact_email }}.
+
+Thank you for your order!
+
+Sincerely,
+
+Ecommerce
