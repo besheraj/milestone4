@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['stepuni.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['stepuni-milestone4.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
@@ -114,6 +114,7 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/profiles/'
+
 WSGI_APPLICATION = 'stepuni.wsgi.application'
 
 # Database
