@@ -10,7 +10,8 @@ import time
 
 
 class StripeWH_Handler:
-    # handel stripe webhook
+
+    #  stripe webhook handler
     def __init__(self, request):
         self.request = request
 
@@ -39,14 +40,14 @@ class StripeWH_Handler:
 
     def handle_payment_intent_succeeded(self, event):
 
-        # if the payment_intent.succeeded webhook from Stripe
+        # if the payment succeeded webhook from Stripe
         intent = event.data.object
         pid = intent.id
         save_info = intent.metadata.save_info
 
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
-        grand_total = round(intent.charges.data[0].amount / 100, 2)
+        total_amount = round(intent.charges.data[0].amount / 100, 2)
 
         # Clean data in the shipping details
         for field, value in shipping_details.address.items():
@@ -82,6 +83,7 @@ class StripeWH_Handler:
                     street_address1__iexact=shipping_details.address.line1,
                     street_address2__iexact=shipping_details.address.line2,
                     county__iexact=shipping_details.address.state,
+                    total_amount=total_amount,
                     stripe_pid=pid,
                 )
                 order_exists = True
@@ -123,9 +125,8 @@ class StripeWH_Handler:
             status=200)
 
     def handle_payment_intent_payment_failed(self, event):
-        """
-        Handle the payment_intent.payment_failed webhook from Stripe
-        """
+
+        # if payment not successful
         return HttpResponse(
             content=f'Webhook received: {event["type"]}',
             status=200)

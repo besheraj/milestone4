@@ -60,6 +60,7 @@ def checkout(request, service_id):
             order.stripe_pid = pid
             service_name = Service.objects.get(id=service_id)
             order.service_name = service_name
+            order.total_amount = settings.PRICE
             order.save()
             # Save the info to the user's profile if all is well
             request.session['save_info'] = 'save-info' in request.POST
@@ -103,7 +104,6 @@ def checkout(request, service_id):
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
-        'total': settings.PRICE,
         'service': service
     }
     return render(request, template, context)
@@ -144,6 +144,5 @@ def checkout_success(request, order_number):
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
-        'total': settings.PRICE
     }
     return render(request, template, context)

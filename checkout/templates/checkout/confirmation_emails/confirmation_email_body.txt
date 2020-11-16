@@ -4,6 +4,7 @@ This is a confirmation of your payment at Stepuni. Your order information are be
 
 Order Number: {{ order.order_number }}
 Order Date: {{ order.date }}
+Order Charged amount: {{ order.total_amount }}
 
 Quizz Name: ${{ order.service_name }}
 
