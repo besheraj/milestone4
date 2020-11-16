@@ -179,10 +179,17 @@ section.masthead h1 {
 }
 
 /* service styling */
+.serivce-table{
+    margin: 40px 0;
+}
+
 .service-img{
   height: 200px;
   width: 200px;
-  margin: 0 auto;
+  margin: 10px auto;
+}
+.service-description {
+    margin: 10px 0;
 }
 
 /* media styling */
