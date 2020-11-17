@@ -53,10 +53,12 @@ class StripeWH_Handler:
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
-
+        print ("f1")
+        print(intent.metadata)
         # Update profile information if save_info was checked
         profile = None
         username = intent.metadata.username
+        print ("f2") 
         if username != 'AnonymousUser':
             profile = UserProfile.objects.get(user__username=username)
             if save_info:
@@ -68,7 +70,7 @@ class StripeWH_Handler:
                 profile.default_street_address2 = shipping_details.address.line2
                 profile.default_county = shipping_details.address.state
                 profile.save()
-
+        
         order_exists = False
         attempt = 1
         print ("second")
