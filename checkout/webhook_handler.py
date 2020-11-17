@@ -48,7 +48,7 @@ class StripeWH_Handler:
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         total_amount = round(intent.charges.data[0].amount / 100, 2)
-
+        print ("first") 
         # Clean data in the shipping details
         for field, value in shipping_details.address.items():
             if value == "":
@@ -71,6 +71,7 @@ class StripeWH_Handler:
 
         order_exists = False
         attempt = 1
+        print ("second")
         while attempt <= 5:
             try:
                 order = Order.objects.get(
@@ -91,6 +92,8 @@ class StripeWH_Handler:
             except Order.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
+        print("third")
+        print(order_exists)
         if order_exists:
             self._send_confirmation_email(order)
             return HttpResponse(
@@ -119,6 +122,7 @@ class StripeWH_Handler:
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
+        print("last")
         self._send_confirmation_email(order)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
