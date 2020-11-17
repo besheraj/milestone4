@@ -55,7 +55,7 @@
                     <div class="dropdown-menu border-0" aria-labelledby="user-options">
                         {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                                <a class="btn btn-info mt-1" href="{% url 'add_quizz' %}">Add Quizz!</a>
+                                <a href="{% url 'add_quizz' %}" class="dropdown-item">Add Quizz!</a>
                             {% endif %}
                             <a href="{% url 'profile' %}" class="dropdown-item">Get Started!</a>
                             <a href="{% url 'update_profile' %}" class="dropdown-item">Update Profile</a>

@@ -37,7 +37,7 @@ def add_quizz(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully added !')
-            return redirect(reverse('quizz'))
+            return redirect(reverse('services'))
         else:
             messages.error(request, 'Failed to add service. Please ensure the form is valid.')
     else:
