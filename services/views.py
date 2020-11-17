@@ -35,7 +35,7 @@ def add_quizz(request):
     if request.method == 'POST':
         form = ServiceForm(request.POST, request.FILES)
         if form.is_valid():
-            product = form.save()
+            form.save()
             messages.success(request, 'Successfully added !')
             return redirect(reverse('quizz'))
         else:
