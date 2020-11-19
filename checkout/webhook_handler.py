@@ -50,10 +50,7 @@ class StripeWH_Handler:
         profile = None
         username = intent.metadata.username
         if username != 'AnonymousUser':
-            print (username)
-            print(billing_details)
-            profile = UserProfile.objects.get(user__username=username)
-            
+            profile = UserProfile.objects.get(user__username=username)            
             if save_info:
                 profile.default_phone_number = billing_details.phone
                 profile.default_country = billing_details.address.country
@@ -86,9 +83,21 @@ class StripeWH_Handler:
             except Order.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
-        print("order exist = ")
         print(order_exists)
         if order_exists:
+            order = Order.objects.get(
+                full_name__iexact=billing_details.name,
+                email__iexact=billing_details.email,
+                phone_number__iexact=billing_details.phone,
+                country__iexact=billing_details.address.country,
+                postcode__iexact=billing_details.address.postal_code,
+                town_or_city__iexact=billing_details.address.city,
+                street_address1__iexact=billing_details.address.line1,
+                street_address2__iexact=billing_details.address.line2,
+                county__iexact=billing_details.address.state,
+                total_amount=total_amount,
+                stripe_pid=pid,
+            )
             self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
@@ -98,7 +107,6 @@ class StripeWH_Handler:
             try:
                 order = Order.objects.create(
                     full_name=billing_details.name,
-                    service_name=billing_details.service_name,
                     user_profile=profile,
                     email=billing_details.email,
                     phone_number=billing_details.phone,

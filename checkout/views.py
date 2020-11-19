@@ -1,3 +1,4 @@
+from services.views import services
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
@@ -100,11 +101,19 @@ def checkout(request, service_id):
         messages.warning(request, 'Stripe public key is missing. \
             Did you forget to set it in your environment?')
     template = 'checkout/checkout.html'
+    total = settings.PRICE
+    stripe_total = round(total * 100)
+    stripe.api_key = stripe_secret_key
+    intent = stripe.PaymentIntent.create(
+        amount=stripe_total,
+        currency=settings.STRIPE_CURRENCY,
+    )
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
-        'service': service
+        'service': service,
+        'total' : settings.PRICE
     }
     return render(request, template, context)
 
