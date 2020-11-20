@@ -5,6 +5,7 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from django.conf import settings
 
+from services.models import Service
 from checkout.models import Order
 
 
@@ -73,4 +74,17 @@ def order_history_table(request):
         'on_profile_page': True,
     }
 
+    return render(request, template, context)
+
+
+@login_required
+def available_quizes(request, service_id):
+    service = get_object_or_404(Service, pk=service_id)
+    order = get_object_or_404(Order, order_number=order_number)
+    template = 'services/available_services.html' 
+    context = {
+        'order': order,
+        'service': service
+
+    }
     return render(request, template, context)

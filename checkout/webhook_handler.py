@@ -42,41 +42,16 @@ class StripeWH_Handler:
 
         # if the payment succeeded webhook from Stripe
         intent = event.data.object
-        pid = intent.id
-        save_info = intent.metadata.save_info
-        billing_details = intent.charges.data[0].billing_details
-        total_amount = round(intent.charges.data[0].amount / 100, 2)
+        order_id = intent.metadata.order_id
         # Update profile information if save_info was checked
-        profile = None
         username = intent.metadata.username
-        if username != 'AnonymousUser':
-            profile = UserProfile.objects.get(user__username=username)            
-            if save_info:
-                profile.default_phone_number = billing_details.phone
-                profile.default_country = billing_details.address.country
-                profile.default_postcode = billing_details.address.postal_code
-                profile.default_town_or_city = billing_details.address.city
-                profile.default_street_address1 = billing_details.address.line1
-                profile.default_street_address2 = billing_details.address.line2
-                profile.default_county = billing_details.address.state
-                profile.save()
-        
         order_exists = False
+        order=None
         attempt = 1
         while attempt <= 5:
             try:
                 order = Order.objects.get(
-                    full_name__iexact=billing_details.name,
-                    email__iexact=billing_details.email,
-                    phone_number__iexact=billing_details.phone,
-                    country__iexact=billing_details.address.country,
-                    postcode__iexact=billing_details.address.postal_code,
-                    town_or_city__iexact=billing_details.address.city,
-                    street_address1__iexact=billing_details.address.line1,
-                    street_address2__iexact=billing_details.address.line2,
-                    county__iexact=billing_details.address.state,
-                    total_amount=total_amount,
-                    stripe_pid=pid,
+                    order_number=order_id
                 )
                 order_exists = True
                 break
@@ -84,51 +59,19 @@ class StripeWH_Handler:
                 attempt += 1
                 time.sleep(1)
         print(order_exists)
+        print(order)
         if order_exists:
-            order = Order.objects.get(
-                full_name__iexact=billing_details.name,
-                email__iexact=billing_details.email,
-                phone_number__iexact=billing_details.phone,
-                country__iexact=billing_details.address.country,
-                postcode__iexact=billing_details.address.postal_code,
-                town_or_city__iexact=billing_details.address.city,
-                street_address1__iexact=billing_details.address.line1,
-                street_address2__iexact=billing_details.address.line2,
-                county__iexact=billing_details.address.state,
-                total_amount=total_amount,
-                stripe_pid=pid,
-            )
+            order.status = "paid"
+            order.save()
             self._send_confirmation_email(order)
+            print("should return result to stripe")
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
                 status=200)
         else:
-            order = None
-            try:
-                order = Order.objects.create(
-                    full_name=billing_details.name,
-                    user_profile=profile,
-                    email=billing_details.email,
-                    phone_number=billing_details.phone,
-                    country=billing_details.address.country,
-                    postcode=billing_details.address.postal_code,
-                    town_or_city=billing_details.address.city,
-                    street_address1=billing_details.address.line1,
-                    street_address2=billing_details.address.line2,
-                    county=billing_details.address.state,
-                    stripe_pid=pid,
-                )
-            except Exception as e:
-                if order:
-                    order.delete()
-                return HttpResponse(
-                    content=f'Webhook received: {event["type"]} | ERROR: {e}',
-                    status=500)
-        print("last")
-        self._send_confirmation_email(order)
-        return HttpResponse(
-            content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
-            status=200)
+            return HttpResponse(
+                content=f'Webhook received: {event["type"]} | Order Doesn\'t exist',
+                status=500)
 
     def handle_payment_intent_payment_failed(self, event):
 

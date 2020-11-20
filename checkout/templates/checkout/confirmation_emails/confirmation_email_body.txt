@@ -6,7 +6,7 @@ Order Number: {{ order.order_number }}
 Order Date: {{ order.date }}
 Order Charged amount: {{ order.total_amount }}
 
-Quizz Name: ${{ order.service_name }}
+Quizz Name: ${{ order.service_id }}
 
 We have received your order, you will receive an email from our assessment team with
 the full report from us with in the next 2 working days.

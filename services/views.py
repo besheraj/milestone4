@@ -1,8 +1,12 @@
+from re import template
 from django.shortcuts import render,redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import ServiceForm
 from .models import Service
+
+from checkout.models import Order
+from profiles.models import UserProfile
 
 
 @login_required
@@ -18,11 +22,17 @@ def services(request):
 @login_required
 def quizz(request, service_id):
     # display a the quizz
-    service = get_object_or_404(Service, pk=service_id)
-    context = {
-        'service': service
-    }
-    return render(request, 'services/quizz.html', context)
+    profile =  UserProfile.objects.get(user=request.user)
+    order = Order.objects.get(service_id=service_id,user_profile=profile)
+    if order.status == 'paid':
+        service = get_object_or_404(Service, pk=service_id)
+        context = {
+            'service': service
+        }
+        return render(request, 'services/quizz.html', context)
+    else:
+        messages.error(request, 'You have to buy the service first')
+        return redirect(reverse('services'))
 
 
 @login_required()
@@ -90,3 +100,4 @@ def delete_quizz(request, service_id):
     service.delete()
     messages.success(request, 'Quizz deleted!')
     return redirect(reverse('services'))
+
