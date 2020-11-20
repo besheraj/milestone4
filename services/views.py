@@ -1,4 +1,3 @@
-from re import template
 from django.shortcuts import render,redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -21,18 +20,22 @@ def services(request):
 
 @login_required
 def quizz(request, service_id):
-    # display a the quizz
+    # show only quizz with successful payment
     profile =  UserProfile.objects.get(user=request.user)
-    order = Order.objects.get(service_id=service_id,user_profile=profile)
-    if order.status == 'paid':
-        service = get_object_or_404(Service, pk=service_id)
-        context = {
-            'service': service
-        }
-        return render(request, 'services/quizz.html', context)
-    else:
+    orders = Order.objects.filter(service_id=service_id,user_profile=profile)
+    if orders.count() == 0:
         messages.error(request, 'You have to buy the service first')
         return redirect(reverse('services'))
+    else:
+        order = orders.first()
+        if order.status == 'paid':
+            service = Service.objects.get(pk=service_id)
+            context = {
+                'service': service
+            }
+            return render(request, 'services/quizz.html', context)
+    
+        
 
 
 @login_required()

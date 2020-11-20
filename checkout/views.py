@@ -102,8 +102,7 @@ def checkout(request, service_id):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     service = get_object_or_404(Service, pk=service_id)
-
-    
+        
     total = settings.PRICE
     stripe_total = round(total * 100)
     stripe.api_key = stripe_secret_key

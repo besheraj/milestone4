@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
@@ -78,13 +78,12 @@ def order_history_table(request):
 
 
 @login_required
-def available_quizes(request, service_id):
-    service = get_object_or_404(Service, pk=service_id)
-    order = get_object_or_404(Order, order_number=order_number)
-    template = 'services/available_services.html' 
+def available_quizes(request):
+    
+    profile =  UserProfile.objects.get(user=request.user)
+    orders = Order.objects.filter(user_profile=profile, status="paid")
+    
     context = {
-        'order': order,
-        'service': service
-
-    }
-    return render(request, template, context)
+            'orders':orders,
+            }
+    return render(request, 'profiles/available_quizes.html', context)
