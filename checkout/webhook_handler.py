@@ -58,13 +58,11 @@ class StripeWH_Handler:
             except Order.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
-        print(order_exists)
-        print(order)
+
         if order_exists:
             order.status = "paid"
             order.save()
             self._send_confirmation_email(order)
-            print("should return result to stripe")
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
                 status=200)
