@@ -82,7 +82,6 @@ def available_quizes(request):
     
     profile =  UserProfile.objects.get(user=request.user)
     orders = Order.objects.filter(user_profile=profile, status="paid")
-    
     context = {
             'orders':orders,
             }
