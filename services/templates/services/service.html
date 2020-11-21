@@ -6,6 +6,7 @@
         <h1 class="text-center mb-5 text-info">Choose one of the following programs</h1>
         <div class="container-fluid p-0">
             {% for service in services %}
+
                 <div class="row no-gutters serivce-table">
                     <div class="col-lg-6 order-lg-2 text-white  text-center ">
                         <img class="service-img" src="{{ MEDIA_URL }}{{ service.image }}" alt="{{ service.name }}">
@@ -13,7 +14,12 @@
                     <div class="col-lg-6 order-lg-1 my-auto text-center service-description ">
                         <h2>{{ service.name }}</h2>
                         <p class="lead mb-1">{{ service.description }}</p>
+                        {% if service.paid %}
+                        <a class="btn btn-info mt-1" href="{% url 'quizz' service.id %}">Start Quizz!</a>
+                        {% else %}
                         <a class="btn btn-info mt-1" href="{% url 'checkout' service.id %}">Checkout!</a>
+                        {% endif %}
+                        
                         {% if request.user.is_superuser %}
                             <a class="btn btn-info mt-1" href="{% url 'edit_quizz' service.id %}">Edit the Quizz!</a>
                             <a class="btn btn-info mt-1" href="{% url 'delete_quizz' service.id %}">Delete the

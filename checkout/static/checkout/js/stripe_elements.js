@@ -116,8 +116,7 @@ form.addEventListener('submit', function(ev) {
         },
         error: function (response) {
             alert(response.responseJSON.msg);
-            
-            location.href = "/services/"
+            location.href = "/profiles/available_quizes"
           }
     });
 });

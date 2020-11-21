@@ -12,8 +12,27 @@ from profiles.models import UserProfile
 def services(request):
     # display all quizes
     services = Service.objects.all()
+    profile =  UserProfile.objects.get(user=request.user)
+    orders = Order.objects.filter(user_profile=profile, status="paid")
+    res = []
+    
+    for svc in services:
+        currenv_svc = {
+            "id": svc.id,
+            "name": svc.name,
+            "image": svc.image,
+            "quizz": svc.quizz,
+            "description":svc.description, 
+            "sku": svc.sku,
+            "paid": False
+            }
+        for order in orders:
+            if svc.id == order.service_id.id:
+                currenv_svc["paid"] = True
+                break
+        res.append(currenv_svc)
     context = {
-        'services': services
+        'services': res
     }
     return render(request, 'services/service.html', context)
 

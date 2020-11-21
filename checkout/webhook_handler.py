@@ -43,8 +43,7 @@ class StripeWH_Handler:
         # if the payment succeeded webhook from Stripe
         intent = event.data.object
         order_id = intent.metadata.order_id
-        # Update profile information if save_info was checked
-        username = intent.metadata.username
+
         order_exists = False
         order=None
         attempt = 1

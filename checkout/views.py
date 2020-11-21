@@ -43,7 +43,7 @@ def create_order(request):
         service_id = request.POST['service_id']
         profile = UserProfile.objects.get(user=request.user)
         orders = Order.objects.filter(
-            service_id=service_id, user_profile=profile)
+            service_id=service_id, user_profile=profile, status="paid")
         if orders.count() > 0:
             return JsonResponse({'msg': 'you have already ordered this service, check your order history or available quizes.'},  status=400)
 
@@ -67,6 +67,7 @@ def create_order(request):
             service_id = Service.objects.get(id=service_id)
             order.service_id = service_id
             profile = UserProfile.objects.get(user=request.user)
+
             # Attach the user's profile to the order
             order.user_profile = profile
             order.total_amount = settings.PRICE
