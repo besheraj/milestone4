@@ -1,11 +1,10 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from .forms import UserProfileForm
 from django.conf import settings
 
-from services.models import Service
 from checkout.models import Order
 
 
@@ -72,10 +71,9 @@ def order_history_table(request):
 
 @login_required
 def available_quizes(request):
-    
-    profile =  UserProfile.objects.get(user=request.user)
+    profile = UserProfile.objects.get(user=request.user)
     orders = Order.objects.filter(user_profile=profile, status="paid")
     context = {
-            'orders':orders,
-            }
+        'orders': orders,
+    }
     return render(request, 'profiles/available_quizes.html', context)

@@ -1,6 +1,4 @@
-from django.http import request
-from services.views import services
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -45,7 +43,8 @@ def create_order(request):
         orders = Order.objects.filter(
             service_id=service_id, user_profile=profile, status="paid")
         if orders.count() > 0:
-            return JsonResponse({'msg': 'you have already ordered this service, check your order history or available quizes.'},  status=400)
+            return JsonResponse({'msg': 'you have already ordered this service, check your order history or available '
+                                        'quizes.'},  status=400)
 
         form_data = {
             'full_name': request.POST['full_name'],
@@ -68,7 +67,7 @@ def create_order(request):
             order.service_id = service_id
             profile = UserProfile.objects.get(user=request.user)
 
-            # Attach the user's profile to the order
+            # Attach the user's profile and total amount to the order
             order.user_profile = profile
             order.total_amount = settings.PRICE
             order.save()
@@ -103,14 +102,8 @@ def checkout(request, service_id):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     service = get_object_or_404(Service, pk=service_id)
-        
-    total = settings.PRICE
-    stripe_total = round(total * 100)
     stripe.api_key = stripe_secret_key
-    intent = stripe.PaymentIntent.create(
-        amount=stripe_total,
-        currency=settings.STRIPE_CURRENCY,
-    )
+
     # prefill the user profile info if already stored before in profile
     if request.user.is_authenticated:
         try:

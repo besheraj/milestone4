@@ -92,7 +92,7 @@ TEMPLATES = [
     },
 ]
 
-# allauth configuration 
+# allauth configuration
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 AUTHENTICATION_BACKENDS = (
@@ -124,7 +124,7 @@ WSGI_APPLICATION = 'stepuni.wsgi.application'
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 else:
     DATABASES = {
@@ -133,7 +133,6 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -176,7 +175,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 if 'USE_AWS' in os.environ:
-    
     # Bucket Config
     AWS_STORAGE_BUCKET_NAME = 'stepuni-milestone-4'
     AWS_S3_REGION_NAME = 'ap-southeast-1'

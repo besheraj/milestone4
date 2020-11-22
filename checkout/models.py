@@ -1,7 +1,6 @@
 import uuid
 
 from django.db import models
-from django.conf import settings
 
 from django_countries.fields import CountryField
 from services.models import Service
@@ -13,8 +12,8 @@ class Order(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True, related_name='orders')
     service_id = models.ForeignKey(Service, on_delete=models.SET_NULL,
-                                     null=True, blank=True, related_name='services')
-    status = models.CharField(max_length=50, null=False, blank=False, default='not_paid') # not_paid, paid
+                                   null=True, blank=True, related_name='services')
+    status = models.CharField(max_length=50, null=False, blank=False, default='not_paid')  # not_paid, paid
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
@@ -33,7 +32,6 @@ class Order(models.Model):
         return uuid.uuid4().hex.upper()
 
     def save(self, *args, **kwargs):
-
         # Override the original save method to set the order number
         # if it hasn't been set already.
         if not self.order_number:

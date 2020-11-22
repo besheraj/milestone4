@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import ServiceForm
@@ -12,25 +12,25 @@ from profiles.models import UserProfile
 def services(request):
     # display all quizes
     services = Service.objects.all()
-    profile =  UserProfile.objects.get(user=request.user)
+    profile = UserProfile.objects.get(user=request.user)
     orders = Order.objects.filter(user_profile=profile, status="paid")
     res = []
-    
+
     for svc in services:
-        currenv_svc = {
+        current_svc = {
             "id": svc.id,
             "name": svc.name,
             "image": svc.image,
             "quizz": svc.quizz,
-            "description":svc.description, 
+            "description": svc.description,
             "sku": svc.sku,
             "paid": False
-            }
+        }
         for order in orders:
             if svc.id == order.service_id.id:
-                currenv_svc["paid"] = True
+                current_svc["paid"] = True
                 break
-        res.append(currenv_svc)
+        res.append(current_svc)
     context = {
         'services': res
     }
@@ -40,8 +40,8 @@ def services(request):
 @login_required
 def quizz(request, service_id):
     # show only quizz with successful payment
-    profile =  UserProfile.objects.get(user=request.user)
-    orders = Order.objects.filter(service_id=service_id,user_profile=profile)
+    profile = UserProfile.objects.get(user=request.user)
+    orders = Order.objects.filter(service_id=service_id, user_profile=profile)
     if orders.count() == 0:
         messages.error(request, 'You have to buy the service first')
         return redirect(reverse('services'))
@@ -53,8 +53,6 @@ def quizz(request, service_id):
                 'service': service
             }
             return render(request, 'services/quizz.html', context)
-    
-        
 
 
 @login_required()
@@ -122,4 +120,3 @@ def delete_quizz(request, service_id):
     service.delete()
     messages.success(request, 'Quizz deleted!')
     return redirect(reverse('services'))
-

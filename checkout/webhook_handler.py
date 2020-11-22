@@ -4,7 +4,6 @@ from django.template.loader import render_to_string
 from django.conf import settings
 
 from .models import Order
-from profiles.models import UserProfile
 
 import time
 
@@ -45,7 +44,7 @@ class StripeWH_Handler:
         order_id = intent.metadata.order_id
 
         order_exists = False
-        order=None
+        order = None
         attempt = 1
         while attempt <= 5:
             try:
@@ -67,7 +66,7 @@ class StripeWH_Handler:
                 status=200)
         else:
             return HttpResponse(
-                content=f'Webhook received: {event["type"]} | Order Doesn\'t exist',
+                content=f'Webhook received: {event["type"]} | Order Not exist',
                 status=500)
 
     def handle_payment_intent_payment_failed(self, event):
