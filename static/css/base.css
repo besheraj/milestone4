@@ -121,7 +121,7 @@ section.masthead h1 {
 .message-container {
   position: fixed;
   top: 72px;
-  right: 15px;
+  right: 35px;
   z-index: 99999999999;
 }
 
@@ -131,18 +131,6 @@ section.masthead h1 {
 
 .toast-capper {
   height: 2px;
-}
-
-/* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
-.arrow-up {
-  width: 0; 
-  height: 0; 
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent; 
-  border-bottom: 10px solid black;
-  position: absolute;
-  top: -10px;
-  right: 136px;
 }
 
 /* Convenience classes - colors copied from Bootstrap */
