@@ -10,13 +10,6 @@ from checkout.models import Order
 
 
 @login_required
-def profile(request):
-    template = 'profiles/profile.html'
-
-    return render(request, template)
-
-
-@login_required
 def update_profile(request):
     # Display the user's profile.
     profile = get_object_or_404(UserProfile, user=request.user)

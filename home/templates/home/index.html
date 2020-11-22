@@ -2,79 +2,119 @@
 {% load static %}
 
 {% block page_header %}
-
 <section class="masthead text-white text-center">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h1 class="mb-5"> Confused about what to study next? </h1>
-          <h4>Sign up now and we will help you to choose your
-            next education!</h4>
-        </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <div class="col-12 col-md-4 offset-md-4">
-            <a href="{% url 'account_signup' %}" class="btn btn-block btn-lg btn-info mt-5">Sign up!</a>
-          </div>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <h1 class="mb-5"> Confused about what to study next? </h1>
+        <h4>Sign up now and we will help you to choose your
+          next education!</h4>
+      </div>
+      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+        <div class="col-12 col-md-4 offset-md-4">
+          <a href="{% url 'account_signup' %}" class="btn btn-block btn-lg btn-info mt-5">Sign up!</a>
         </div>
       </div>
     </div>
+  </div>
 </section>
-
 {% endblock %}
 
 {% block content %}
 <section class="features-icons bg-light text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-              <i class="icon-screen-desktop m-auto text-primary"></i>
-            </div>
-            <h3>Easy To Use</h3>
-            <p class="lead mb-0">Just aby answering a few questions you will get a better vision of what your looking for.</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="fa fa-smile-beam m-auto text-info"></i>
           </div>
+          <h3>Easy To Use</h3>
+          <p class="lead mb-0">Just aby answering a few questions you will get a better vision of what your looking for.
+          </p>
         </div>
-        <div class="col-lg-4">
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-              <i class="icon-layers m-auto text-primary"></i>
-            </div>
-            <h3>Match Making</h3>
-            <p class="lead mb-0">Will know if you are a match to this program and if your eligible and more. </p>
+      </div>
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="icon-layers m-auto text-info"></i>
           </div>
+          <h3>Match Making</h3>
+          <p class="lead mb-0">Will know if you are a match to this program and if your eligible and more. </p>
         </div>
-        <div class="col-lg-4">
-          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-              <i class="icon-check m-auto text-primary"></i>
-            </div>
-            <h3>Guaranteed Results</h3>
-            <p class="lead mb-0">Buckle up! choose a quizz, make a small payment of just a 5 USD and we will send you the results to your email. </p>
+      </div>
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="fa fa-check-double m-auto text-info"></i>
           </div>
+          <h3>Guaranteed Results</h3>
+          <p class="lead mb-0">Buckle up! choose a quizz, make a small payment of just a 5 USD and we will send you the
+            results to your email. </p>
         </div>
       </div>
     </div>
-  </section>
-
-    <!-- Call to Action -->
-    <section class="call-to-action text-center mt-5">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <h2 class="mb-4 text-info">Ready to get started? Sign up now!</h2>
+  </div>
+</section>
+<!-- steps to do  -->
+<section class="features-icons stepstodo bg-light text-center">
+  <div class="container">
+    <h1 class="text-center mb-5 text-info">Get started !</h1>
+    <div class="col-md-4 offset-md-4 mt-5 mb-5 text-center">
+      <a href="{% url 'services' %}" class="btn btn-info w-100 ">Go to the quizes list!</a>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="icon-screen-desktop m-auto text-info"></i>
           </div>
-          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-            <div class="col-12 col-md-4 offset-md-4">
-              <a href="{% url 'account_signup' %}" class="btn btn-block btn-lg btn-info mt-5">Sign up!</a>
-            </div>
-          </div>
+          <h3 class="text-secondary">Check out our available Programs!</h3>
+          <p class="lead mb-0">You can start by Signing up for a new account then check our available programs, find a quizz then click on checkout.
+          </p>
         </div>
       </div>
-    </section>
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="fa fa-credit-card m-auto text-info"></i>
+          </div>
+          <h3 class="text-secondary">Check out!</h3>
+          <p class="lead mb-0">Make a small payment of just a <strong>5 USD</strong> and you will be directed to the quizz.
+            <br> <br>
+            <strong>Note:</strong> You can order the quizz one time only, and you can access the purchased quizzes by clicking on "My Quizzes"</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="icon-check m-auto text-info"></i>
+          </div>
+          <h3>Complete the Quizz!</h3>
+          <p class="lead mb-0">you will have to answer a few questions and it will take about 3-5 minutes, we
+            will ask you some questions regarding your education background and some contact information, once you have submitted the quizz you will get an email from our team with a full report. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    
+<!-- Call to Action -->
+<section class="call-to-action text-center mt-5">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <h2 class="mb-4 text-info">Ready to get started? Sign up now!</h2>
+      </div>
+      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+        <div class="col-12 col-md-4 offset-md-4">
+          <a href="{% url 'account_signup' %}" class="btn btn-block btn-lg btn-info mt-5">Sign up!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 {% endblock %}

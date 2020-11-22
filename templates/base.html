@@ -5,22 +5,22 @@
 
 <head>
     {% block meta %}
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
     {% endblock %}
 
     {% block corecss %}
-        <!-- Bootstrap core CSS -->
-        <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-        <!-- font awesome and icons -->
-        <link href="{% static 'fontawesome-free/css/all.min.css' %}" rel="stylesheet">
-        <link href="{% static 'simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet" type="text/css">
-        <!-- Custom styles  -->
-        <link href="{% static 'css/base.css' %}" rel="stylesheet">
-        <!-- favicon -->
-        <link rel="shortcut icon" href="#" />
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- font awesome and icons -->
+    <link href="{% static 'fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet" type="text/css">
+    <!-- Custom styles  -->
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="#" />
 
     {% endblock %}
 
@@ -28,137 +28,95 @@
     {% endblock %}
 
     {% block corejs %}
-        <!-- Stripe -->
-        <script src="https://js.stripe.com/v2/"></script>
-        <script src="https://js.stripe.com/v3/"></script>
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v2/"></script>
+    <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
-
+    {% block page_title%}
     <title>Step Uni - Planing your next education adventure!</title>
+    {% endblock %}
 </head>
 
 <body>
-<header>
-    <nav class="navbar navbar-light bg-light static-top">
-        <div class="container ">
-            {% if request.user.is_authenticated %}
-                <a class="navbar-brand text-info font-weight-bold" href="{% url 'profile' %}">
+    <header class="container-fluid">
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="col-6 col-lg-3  my-auto py-1 py-lg-0 text-center text-lg-left text-sm-left">
+                {% if request.user.is_authenticated %}
+                <a class="navbar-brand text-info font-weight-bold" href="{% url 'services' %}">
                     <div class="logo"></div>
-                    STEPUNI </a>
-            {% else %}
+                    STEPUNI
+                </a>
+                {% else %}
                 <a class="navbar-brand text-info font-weight-bold" href="{% url 'home' %}">
                     <div class="logo"></div>
-                    STEPUNI </a>
-            {% endif %}
-            <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                <li class="list-inline-item dropdown">
-                    <a href="#" class="btn btn-info" id="user-options" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">My Account</a>
-                    <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                    STEPUNI
+                </a>
+                {% endif %}
+            </div>
+            <div class="col-6 col-lg-3 my-auto py-1 py-lg-0 text-center text-lg-center text-sm-left">
+                <div class="dropdown">
+                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Account</button>
+                    <div class="dropdown-menu border-0" aria-labelledby="dropdownMenuButton">
                         {% if request.user.is_authenticated %}
-                            {% if request.user.is_superuser %}
-                                <a href="{% url 'add_quizz' %}" class="dropdown-item">Add Quizz!</a>
-                            {% endif %}
-                            <a href="{% url 'profile' %}" class="dropdown-item">Get Started!</a>
-                            <a href="{% url 'update_profile' %}" class="dropdown-item">Billing Information</a>
-                            <a href="{% url 'order_history_table' %}" class="dropdown-item">Order History</a>
-                            <a href="{% url 'available_quizes' %}" class="dropdown-item">My Quizzes</a>
-                            <a href="{% url 'account_change_password' %}" class="dropdown-item">Change Your Password</a>
-                            <a href="{% url 'account_email' %}" class="dropdown-item">Change Your Email</a>
-                            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                        {% if request.user.is_superuser %}
+                        <a href="{% url 'add_quizz' %}" class="dropdown-item">Add Quizz!</a>
+                        {% endif %}
+                        <a href="{% url 'services' %}" class="dropdown-item">Quizzes List</a>
+                        <a href="{% url 'update_profile' %}" class="dropdown-item">Billing Information</a>
+                        <a href="{% url 'order_history_table' %}" class="dropdown-item">Order History</a>
+                        <a href="{% url 'available_quizes' %}" class="dropdown-item">My Quizzes</a>
+                        <a href="{% url 'account_change_password' %}" class="dropdown-item">Change Your Password</a>
+                        <a href="{% url 'account_email' %}" class="dropdown-item">Change Your Email</a>
+                        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
                         {% else %}
-                            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                        <a href="{% url 'account_signup' %}" class="dropdown-item">Signup</a>
+                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
                         {% endif %}
                     </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-{% if messages %}
+    {% if messages %}
     <div class="message-container">
         {% for message in messages %}
-            {% with message.level as level %}
-                {% if level == 40 %}
-                    {% include 'includes/toasts/toast_error.html' %}
-                {% elif level == 30 %}
-                    {% include 'includes/toasts/toast_warning.html' %}
-                {% elif level == 25 %}
-                    {% include 'includes/toasts/toast_success.html' %}
-                {% else %}
-                    {% include 'includes/toasts/toast_info.html' %}
-                {% endif %}
-            {% endwith %}
+        {% with message.level as level %}
+        {% if level == 40 %}
+        {% include 'includes/toasts/toast_error.html' %}
+        {% elif level == 30 %}
+        {% include 'includes/toasts/toast_warning.html' %}
+        {% elif level == 25 %}
+        {% include 'includes/toasts/toast_success.html' %}
+        {% else %}
+        {% include 'includes/toasts/toast_info.html' %}
+        {% endif %}
+        {% endwith %}
         {% endfor %}
     </div>
-{% endif %}
+    {% endif %}
 
-{% block page_header %}
-{% endblock %}
+    {% block page_header %}
+    {% endblock %}
 
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
 
-{#    {% block footer %}#}
-{#    <footer class="footer bg-light">#}
-{#        <div class="container">#}
-{#            <div class="row">#}
-{#                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">#}
-{#                    <ul class="list-inline mb-2">#}
-{#                        <li class="list-inline-item">#}
-{#                            <a href="#">About</a>#}
-{#                        </li>#}
-{#                        <li class="list-inline-item">&sdot;</li>#}
-{#                        <li class="list-inline-item">#}
-{#                            <a href="#">Contact</a>#}
-{#                        </li>#}
-{#                        <li class="list-inline-item">&sdot;</li>#}
-{#                        <li class="list-inline-item">#}
-{#                            <a href="#">Terms of Use</a>#}
-{#                        </li>#}
-{#                        <li class="list-inline-item">&sdot;</li>#}
-{#                        <li class="list-inline-item">#}
-{#                            <a href="#">Privacy Policy</a>#}
-{#                        </li>#}
-{#                    </ul>#}
-{#                    <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2020. All Rights Reserved.</p>#}
-{#                </div>#}
-{#                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">#}
-{#                    <ul class="list-inline mb-0">#}
-{#                        <li class="list-inline-item mr-3">#}
-{#                            <a href="#">#}
-{#                                <i class="fab fa-facebook fa-2x fa-fw"></i>#}
-{#                            </a>#}
-{#                        </li>#}
-{#                        <li class="list-inline-item mr-3">#}
-{#                            <a href="#">#}
-{#                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>#}
-{#                            </a>#}
-{#                        </li>#}
-{#                        <li class="list-inline-item">#}
-{#                            <a href="#">#}
-{#                                <i class="fab fa-instagram fa-2x fa-fw"></i>#}
-{#                            </a>#}
-{#                        </li>#}
-{#                    </ul>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </footer>#}
-{#    {% endblock %}#}
+    {% block footer %}
+    {% endblock %}
 
-{% block loadjs %}
+    {% block loadjs %}
     <!-- Bootstrap core JavaScript -->
     <script src="{% static 'jquery/jquery.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-{% endblock %}
+    {% endblock %}
 
-{% block postloadjs %}
+    {% block postloadjs %}
     <script type="text/javascript">
         $('.toast').toast('show');
     </script>
-{% endblock %}
+    {% endblock %}
 
 </body>
 

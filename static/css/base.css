@@ -48,16 +48,6 @@ section.masthead h1 {
   font-size: 2rem;
 }
 
-/*profile start page */
-.showcase-img1 {
-    background: url('/media/step1.png') no-repeat center center;
-}
-.showcase-img2 {
-    background: url('/media/step2.png') no-repeat center center;
-}
-.showcase-img3 {
-    background: url('/media/step3.png') no-repeat center center;
-}
 
 
 /* Allauth form formatting */
@@ -190,18 +180,7 @@ section.masthead h1 {
     font-size: 3rem;
   }
 }
-.showcase .showcase-text {
-  padding: 3rem;
-}
-.showcase .showcase-img {
-  min-height: 30rem;
-  background-size: cover;
-}
-@media (min-width: 768px) {
-  .showcase .showcase-text {
-    padding: 7rem;
-  }
-}
+
 .features-icons {
   padding-top: 7rem;
   padding-bottom: 7rem;
@@ -218,6 +197,10 @@ section.masthead h1 {
 }
 .features-icons .features-icons-item:hover .features-icons-icon i {
   font-size: 5rem;
+}
+
+.stepstodo {
+  background-color: #dff1e0 !important;
 }
 
 .call-to-action {
