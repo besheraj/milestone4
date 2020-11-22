@@ -14,6 +14,10 @@ h6 {
 }
 
 /* nav bar */
+header {
+    padding-right: 0;
+    padding-left: 0;
+}
 
 .logo {
   height: 30px;
@@ -169,6 +173,13 @@ section.masthead h1 {
 .service-description {
     margin: 10px 0;
 }
+
+/*profiles */
+.order-history {
+    max-height: 416px; /* height of profile form + submit button */
+    overflow-y: auto;
+}
+
 
 /* media styling */
 @media (min-width: 768px) {
