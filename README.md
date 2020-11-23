@@ -76,7 +76,7 @@ This site is deployed to heroku and the versioning was done with git and the Rep
 ## Local Deployment: 
 Official Github Documentation on cloning a repository: [Github-cloning](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
 
-1. Navigate to Mainpage of the repository
+1. Navigate to Main Page of the repository
 2. Click on "Code" button
 3. Choose "Clone with HTTPs" & copy URL
 4. Open Terminal
@@ -95,7 +95,7 @@ python3 manage.py migrate
 11.Create a superuser for accessing the django admin view with the following command: python3 manage.py createsuperuser You will be asked for an email address, username and password.
 12.You should be all set and when using the command python3 manage.py runserver the project should run.
 13.You can access the django admin view by adding ~/admin to the end of your (local) URL.
-14. you can add a service using admin access by clicking on "services" then "add service" or you can use your superuser login directly to the website click on "myaccount" then "add quiz", in order to add quiz you will need the put the ifram src link in the "quiz" field, [more about how to get the link from google forms here](https://support.google.com/a/users/answer/9308623?hl=en).
+14. you can add a service using admin access by clicking on "services" then "add service" or you can use your superuser login directly to the website click on "My Account" then "add quiz", in order to add quiz you will need the put the ifram src link in the "quiz" field, [more about how to get the link from google forms here](https://support.google.com/a/users/answer/9308623?hl=en).
 
 ## Deployment to Heroku: Step-by-Step Instructions
 This project is deployed to Heroku. For the deployment the following steps were/are necessary:
@@ -116,14 +116,14 @@ This project is deployed to Heroku. For the deployment the following steps were/
 `STRIPE_PUBLIC_KEY = <YOUR STRIPE_PUBLIC_KEY>`    
 `STRIPE_SECRET_KEY = <YOUR STRIPE_SECRET_KEY>`     
 `STRIPE_WH_SECRET = <YOUR STRIPE_WH_SECRET>`  
-7. Extract the DATABASE_URL Value from the Heroku Settings and set it up in your IDE or local .env file. Make sure to keep this DATABASE_URL a secret and definitly don't commit it to Github.
+7. Extract the DATABASE_URL Value from the Heroku Settings and set it up in your IDE or local .env file. Make sure to keep this DATABASE_URL a secret and definitely don't commit it to Github.
 8. To test if the Postgres database is connected to your IDE you can make use of the command python3 manage.py showmigrations. This should show undone migrations for all models.
 9. Now migrate the models and create the postgres database on heroku by typing the following commands into the terminal:
 python3 manage.py makemigrations
 python3 manage.py migrate
 10. Create a superuser for the Postgres database for accessing the django admin view with the following command: python3 manage.py createsuperuser You will be asked for an email address, username and password.
 11. Log in to heroku from your terminal heroku login
-12. Add exisitng repository to Heroku heroku `git:remote -a <your repository>`
+12. Add existing repository to Heroku heroku `git:remote -a <your repository>`
 13. Push changes to Heroku git push heroku master
 14. Now go to your S3 account. There bucket should already contain a folder called static. To upload the product images create a new folder called media. And add the files to this folder. Make sure to grant public read access to these objects.
 15. Finally, visit the app url from heroku and check out your great site!
