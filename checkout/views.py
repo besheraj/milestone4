@@ -44,7 +44,7 @@ def create_order(request):
             service_id=service_id, user_profile=profile, status="paid")
         if orders.count() > 0:
             return JsonResponse({'msg': 'you have already ordered this service, check your order history or available '
-                                        'quizes.'},  status=400)
+                                        'quizzes.'},  status=400)
 
         form_data = {
             'full_name': request.POST['full_name'],
