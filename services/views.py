@@ -93,7 +93,7 @@ def edit_quizz(request, service_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated!')
-            return redirect(reverse('quizz', args=[service.id]))
+            return redirect(reverse('services'))
         else:
             messages.error(request, 'Failed to update product. Please ensure the form is valid.')
     else:

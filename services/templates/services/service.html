@@ -21,9 +21,9 @@
                         {% endif %}
                         
                         {% if request.user.is_superuser %}
-                            <a class="btn btn-info mt-1" href="{% url 'edit_quizz' service.id %}">Edit the Quizz!</a>
+                            <a class="btn btn-info mt-1" href="{% url 'edit_quizz' service.id %}">Edit the Quiz!</a>
                             <a class="btn btn-info mt-1" href="{% url 'delete_quizz' service.id %}" onclick="return confirm('Are you sure?');">Delete the
-                                Quizz!</a>
+                                Quiz!</a>
                         {% endif %}
 
                     </div>

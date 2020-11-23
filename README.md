@@ -1,7 +1,7 @@
+[![WebSite](media/stepuni.png)]((https://stepuni-milestone4.herokuapp.com/))
 # Stepuni "Milestone 4" Project:
 Stepuni is a web application designed to help match students with the right education or university program.
 easy to use.
-
 live version on: [link to live version!](https://stepuni-milestone4.herokuapp.com/)
 
 # User Experience (UX):
@@ -60,7 +60,7 @@ a. As a Frequent User, I want to check if there is any new services available.
 * **AWS S3 Bucket**: Used to load static and media files for the project.
 
 # Testing:
-
+UI testing has been done Manually check this link for [details](testing.md)
 
 # Deployment:
 This site is deployed to heroku and the versioning was done with git and the Repository is hosted on Github.
