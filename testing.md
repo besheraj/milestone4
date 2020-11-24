@@ -43,6 +43,8 @@ All testing cases has been done manually and below are the details:
 * Any missing Field will ask to fill the required field.
 * Username should be at least 4 character.
 * Password should be least 8 character.
+* If Email already Exists will return " A user is already registered with this e-mail address."
+* If Username already Exist will return " A user is already registered with this username."
 
 ## Login Page:
 * Click on sign up link will direct to Sign Up page.
