@@ -10,7 +10,7 @@ from profiles.models import UserProfile
 
 @login_required
 def services(request):
-    # display all quizes
+    # display all quizzes
     services = Service.objects.all()
     profile = UserProfile.objects.get(user=request.user)
     orders = Order.objects.filter(user_profile=profile, status="paid")
@@ -105,7 +105,6 @@ def edit_quizz(request, service_id):
         'form': form,
         'service': service,
     }
-
     return render(request, template, context)
 
 

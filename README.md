@@ -52,7 +52,7 @@ a. As a Frequent User, I want to check if there is any new services available.
 * **Languages**:HTML5, CSS3, Javascript, Python.
 * **Frameworks**: Bootstrap, Django, Jingja, Jquery.
 * **Databases**: Sqlite3 and PostgresSQL.
-* **pycharm**: This whole project code written using VScode.
+* **Pycharm**: This whole project code written using VScode.
 * **Github**: The whole project committed and pushed to github repository and published on Github pages.
 * **Google Forms**: Used to design the service (quiz).
 * **Payments**: Stripe.
@@ -95,7 +95,7 @@ python3 manage.py migrate
 11.Create a superuser for accessing the django admin view with the following command: python3 manage.py createsuperuser You will be asked for an email address, username and password.
 12.You should be all set and when using the command python3 manage.py runserver the project should run.
 13.You can access the django admin view by adding ~/admin to the end of your (local) URL.
-14. you can add a service using admin access by clicking on "services" then "add service" or you can use your superuser login directly to the website click on "My Account" then "add quiz", in order to add quiz you will need the put the ifram src link in the "quiz" field, [more about how to get the link from google forms here](https://support.google.com/a/users/answer/9308623?hl=en).
+14. you can add a service using admin access by clicking on "services" then "add service" or you can use your superuser login directly to the website click on "My Account" then "add quiz", in order to add quiz you will need the put the ifram src link in the "Quiz" field, [more about how to get the link from google forms here](https://support.google.com/a/users/answer/9308623?hl=en).
 
 ## Deployment to Heroku: Step-by-Step Instructions
 This project is deployed to Heroku. For the deployment the following steps were/are necessary:
@@ -127,6 +127,9 @@ python3 manage.py migrate
 13. Push changes to Heroku git push heroku master
 14. Now go to your S3 account. There bucket should already contain a folder called static. To upload the product images create a new folder called media. And add the files to this folder. Make sure to grant public read access to these objects.
 15. Finally, visit the app url from heroku and check out your great site!
+
+# Future Improvement 
+Will fix the misspelling variables and page names allover the code. 
 
 # Credits:
 * I got the inspiration to make this project as I used some of the styling applied on it from code institute "Project - Boutique Ado".

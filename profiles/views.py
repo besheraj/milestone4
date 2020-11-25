@@ -30,7 +30,6 @@ def update_profile(request):
         'orders': orders,
         'on_profile_page': True
     }
-
     return render(request, template, context)
 
 
@@ -51,7 +50,6 @@ def order_history(request, order_number):
         'total': settings.PRICE
 
     }
-
     return render(request, template, context)
 
 
@@ -65,7 +63,6 @@ def order_history_table(request):
         'orders': orders,
         'on_profile_page': True,
     }
-
     return render(request, template, context)
 
 
