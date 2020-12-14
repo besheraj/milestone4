@@ -170,7 +170,6 @@
         </div>
         <div class="row">
 			<div class="col-12 col-lg-7 text-right">
-                {% if from_profile %}
                     <a href="{% url 'order_history_table' %}" class="btn btn-black rounded-0 my-2">
                         <span class="icon mr-2">
                             <i class="fas fa-angle-left"></i>
@@ -178,7 +177,6 @@
                         <span class="text-uppercase">Back to Order History</span>
                     </a>
                     <a class="btn btn-info mt-1" href="{% url 'available_quizes' %}" >Check My Quizzes!</a>
-                {% endif %}
 			</div>
 		</div>
     </div>

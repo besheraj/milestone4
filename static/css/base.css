@@ -181,6 +181,9 @@ section.masthead h1 {
 }
 
 /* profile page  */
+.back-profile-btn a {
+  color: white;
+}
 
 .emp-profile{
   padding: 3%;
