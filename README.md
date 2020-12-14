@@ -28,6 +28,8 @@ b. As a Returning Visitor, I want to be able to check my current services.
 a. As a Frequent User, I want to check if there is any new services available.
 
 # Features:
+[link to screenshots of the website](design.md)
+
 ## Current Features:
 * Responsive design that works perfectly on any device.
 * Ability to Sign up for new account.
@@ -52,7 +54,7 @@ a. As a Frequent User, I want to check if there is any new services available.
 * **Languages**:HTML5, CSS3, Javascript, Python.
 * **Frameworks**: Bootstrap, Django, Jingja, Jquery.
 * **Databases**: Sqlite3 and PostgresSQL.
-* **Pycharm**: This whole project code written using VScode.
+* **Pycharm**: This whole project code written using pycharm and the code following PEP8.
 * **Github**: The whole project committed and pushed to github repository and published on Github pages.
 * **Google Forms**: Used to design the service (quiz).
 * **Payments**: Stripe.
@@ -60,7 +62,11 @@ a. As a Frequent User, I want to check if there is any new services available.
 * **AWS S3 Bucket**: Used to load static and media files for the project.
 
 # Testing:
+## UI Testing:
 UI testing has been done Manually check this link for [details](testing.md)
+## Code validation:
+* CSS code passed by W3schools CSS jigsaw without errors.
+* Python code is consistent in style and conforms to the PEP8 style guide using Pycharm.
 
 # Deployment:
 This site is deployed to heroku and the versioning was done with git and the Repository is hosted on Github.
