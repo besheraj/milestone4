@@ -7,7 +7,7 @@
         <div class="row header-container">
             <div class="col">
                 <hr>
-                <h2 class="logo-font mb-4">My Billing Information</h2>
+                <h2 class="logo-font mb-4">Profile Management</h2>
                 <hr>
             </div>
         </div>
@@ -18,7 +18,7 @@
                     {% csrf_token %}
                     {{ form|crispy }}
                     <div class="mt-5">
-                        <button class="btn btn-info rounded-0 text-uppercase float-right">Update Information</button>
+                        <button class="btn btn-info rounded-0 text-uppercase float-right">Update My Information</button>
                     <a class="btn btn-outline-black rounded-0 float-right" href="{% url 'services' %}">Cancel</a>
                 </div>
                 </form>

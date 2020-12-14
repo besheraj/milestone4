@@ -29,6 +29,18 @@
 ## Mobile:
 ![Signin Mobile](design/M7.png)
 
+# Profile:
+![Profile Desktop](design/D19.png)
+## Mobile:
+![Profile Mobile](design/M19.png)
+![Profile Mobile](design/M20.png)
+
+# Update Profile:
+![Profile Desktop](design/D20.png)
+## Mobile:
+![Profile Mobile](design/M21.png)
+![Profile Mobile](design/M22.png)
+
 # Quizz List:
 ## Desktop:
 ![Quizz List Desktop](design/D9.png)
