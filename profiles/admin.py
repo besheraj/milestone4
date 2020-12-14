@@ -4,6 +4,7 @@ from .models import UserProfile
 
 # Register your models here.
 class ProfileAdmin(admin.ModelAdmin):
+
     list_display = (
         'user',
         'main_full_name',
@@ -13,7 +14,8 @@ class ProfileAdmin(admin.ModelAdmin):
         'main_town_or_city',
         'main_county',
         'main_postcode',
-        'main_country'
+        'main_country',
+        'profile_photo',
     )
 
     ordering = ('user',)

@@ -9,14 +9,15 @@ from django_countries.fields import CountryField
 class UserProfile(models.Model):
     # user profile form
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    main_full_name = models.CharField(max_length=20, null=True, blank=True)
-    main_phone_number = models.CharField(max_length=20, null=True, blank=True)
-    main_street_address1 = models.CharField(max_length=80, null=True, blank=True)
+    profile_photo = models.ImageField(null=True, blank=True)
+    main_full_name = models.CharField(max_length=20, null=True, blank=False)
+    main_phone_number = models.CharField(max_length=20, null=True, blank=False)
+    main_street_address1 = models.CharField(max_length=80, null=True, blank=False)
     main_street_address2 = models.CharField(max_length=80, null=True, blank=True)
     main_town_or_city = models.CharField(max_length=40, null=True, blank=True)
-    main_county = models.CharField(max_length=80, null=True, blank=True)
-    main_postcode = models.CharField(max_length=20, null=True, blank=True)
-    main_country = CountryField(blank_label='Country', null=True, blank=True)
+    main_county = models.CharField(max_length=80, null=True, blank=False)
+    main_postcode = models.CharField(max_length=20, null=True, blank=False)
+    main_country = CountryField(blank_label='Country', null=True, blank=False)
 
     def __str__(self):
         return self.user.username
