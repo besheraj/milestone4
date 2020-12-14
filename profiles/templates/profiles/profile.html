@@ -1,115 +1,107 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %}
+
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-lg-7">
-            <div class="order-confirmation-wrapper p-2 border">
-                <div class="row">
-                    <div class="col">
-                        <small class="text-muted">My Profile:</small>
-                    </div>
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    {% if profile.profile_photo %}
+                    <img class="service-img" src="{{ MEDIA_URL }}{{ profile.profile_photo }}"
+                        alt="{{ profile.main_full_name }}">
                 </div>
-
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <p class="mb-0 text-black font-weight-bold">Profile Photo</p>
-                    </div>
-                    <div class="col-12 col-md-8">
-                        <img class="service-img" src="{{ MEDIA_URL }}{{ profile.profile_photo }}" alt="{{ profile.main_full_name }}">
-                    </div>
+                {% else %}
+                <img class="service-img" src="{{ MEDIA_URL }}noimage.png" alt="{{ profile.main_full_name }}">
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <div class="profile-head">
+                <h5>
+                    {{profile.main_full_name}}
+                </h5>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a class="btn btn-info m-2 profile-edit-btn" href="{% url 'update_profile' %}"> Edit Profile </a>
+            <a class="btn btn-info m-2 profile-edit-btn" href="{% url 'account_change_password' %}">Change My Password</a>
+            <a class="btn btn-info m-2 profile-edit-btn" href="{% url 'account_email' %}">Change My Email</a>
+        </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="profile-work">
+            <p> User Id</p>
+            <span>{{profile.user}}</span>
+        </div>
+        <div class="profile-work">
+            <p>Contact Number</p>
+            <span>{{profile.main_phone_number}}</span>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="tab-content profile-tab">
+            <h3 class="pb-3">Billing Information</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Address 1</label>
                 </div>
-
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <p class="mb-0 text-black font-weight-bold">Full Name</p>
-                    </div>
-                    <div class="col-12 col-md-8 text-md-right">
-                        <p class="mb-0">{{ profile.main_full_name }}</p>
-                    </div>
+                <div class="col-md-6">
+                    <p>{{profile.main_street_address1}}</p>
                 </div>
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <p class="mb-0 text-black font-weight-bold">Phone Number</p>
-                    </div>
-                    <div class="col-12 col-md-8 text-md-right">
-                        <p class="mb-0">{{ profile.main_phone_number }}</p>
-                    </div>
+            </div>
+            {% if profile.street_address2 %}
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Address 2</label>
                 </div>
-
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <p class="mb-0 text-black font-weight-bold">Address 1</p>
-                    </div>
-                    <div class="col-12 col-md-8 text-md-right">
-                        <p class="mb-0">{{ profile.main_street_address1 }}</p>
-                    </div>
+                <div class="col-md-6">
+                    <p>{{profile.main_street_address2}}</p>
                 </div>
-
-                {% if profile.main_street_address2 %}
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <p class="mb-0 text-black font-weight-bold">Address 2</p>
-                    </div>
-                    <div class="col-12 col-md-8 text-md-right">
-                        <p class="mb-0">{{ profile.main_street_address1 }}</p>
-                    </div>
+            </div>
+            {% endif %}
+            {% if profile.main_town_or_city %}
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Address 2</label>
                 </div>
-                {% endif %}
-
-                {% if profile.main_town_or_city %}
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <p class="mb-0 text-black font-weight-bold">County</p>
-                    </div>
-                    <div class="col-12 col-md-8 text-md-right">
-                        <p class="mb-0">{{ profile.main_town_or_city }}</p>
-                    </div>
+                <div class="col-md-6">
+                    <p>{{profile.main_town_or_city}}</p>
                 </div>
-                {% endif %}
-
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <p class="mb-0 text-black font-weight-bold">County</p>
-                    </div>
-                    <div class="col-12 col-md-8 text-md-right">
-                        <p class="mb-0">{{ profile.main_county }}</p>
-                    </div>
+            </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-md-6">
+                    <label>County </label>
                 </div>
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <p class="mb-0 text-black font-weight-bold">Postal Code</p>
-                    </div>
-                    <div class="col-12 col-md-8 text-md-right">
-                        <p class="mb-0">{{ profile.main_postcode }}</p>
-                    </div>
+                <div class="col-md-6">
+                    <p>{{profile.main_county}}</p>
                 </div>
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <p class="mb-0 text-black font-weight-bold">Country</p>
-                    </div>
-                    <div class="col-12 col-md-8 text-md-right">
-                        <p class="mb-0">{{ profile.main_country }}</p>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Zip code</label>
+                </div>
+                <div class="col-md-6">
+                    <p>{{profile.main_postcode}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Country</label>
+                </div>
+                <div class="col-md-6">
+                    <p>{{profile.main_country}}</p>
                 </div>
             </div>
         </div>
+
     </div>
-    <div class="row">
-        <div class="col-12 col-lg-7 text-right">
-            <a href="{% url 'update_profile' %}" class="btn btn-black rounded-0 my-2">
-                <span class="text-uppercase">Update My Profile</span>
-            </a>
-        </div>
-    </div>
+</div>
+</div>
+</form>
 </div>
 {% endblock %}
