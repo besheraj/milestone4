@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-
-
 {% block content %}
 <div class="container emp-profile">
     <div class="row">
@@ -17,7 +15,7 @@
         </div>
         {% endif %}
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 mt-2 mb-2">
         <div class="profile-head">
             {% if profile.main_full_name%}
             <h5 class="text-info">
@@ -41,7 +39,7 @@
         </div>
     </div>
     <div class="col-md-8">
-        <div class="tab-content profile-tab">
+        <div class="profile-tab">
             <h3 class="pb-3 text-secondary">Billing Information</h3>
             <div class="row">
                 <div class="col-md-6 ">
@@ -100,7 +98,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row mt-2 mb-4">
     <div class="col-md-4">
         <a class="btn btn-info m-2 profile-edit-btn text-center" href="{% url 'update_profile' %}"> Edit Profile </a>
     </div>

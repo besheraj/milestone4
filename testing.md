@@ -9,24 +9,21 @@ All testing cases has been done manually and below are the details:
 * Click on Sign up will direct to Sign up page.
 ### Logged in as user:
 * Click on Stepuni logo to go to Quiz List
-* Click on My Account button will show 7 options (Quizzes List,Billing Information, Order History, My Quizzes, Change My Password, Change Your Email, Logout).
-* Click on Quizzes List will direct to Quizzes List page.
-* Click on Billing Information will direct to Billing Information page.
+* Click on My Account button will show 5 options (Quizzes to order,My Profile, Order History, My Quizzes,Logout).
+* Click on Quizzes to order will direct to Quizzes List page.
+* Click on Profile will direct to Profile page.
 * Click on Order History will direct to Order History page.
 * Click on My Quizzes will direct to My Quizzes page.
-* Click on Change My Password will direct to Change My Password page.
-* Click on Change Your Email will direct to Change Your Email page.
+
 * Click on Logout will direct to Logout page.
 ### Logged in as Admin:
 * Click on Stepuni logo to go to Quiz List
-* Click on My Account button will show 8 options (Add Quiz!, Quizzes List,Billing Information, Order History, My Quizzes, Change My Password, Change Your Email, Logout).
+* Click on My Account button will show 6 options (Add Quiz!, Quizzes to order , Profile, Order History, My Quizzes, Logout).
 * Click on Add Quiz! will direct to Add Quiz! page.
 * Click on Quizzes List will direct to Quizzes List page.
-* Click on Billing Information will direct to Billing Information page.
+* Click on Profile will direct to Profile page.
 * Click on Order History will direct to Order History page.
 * Click on My Quizzes will direct to My Quizzes page.
-* Click on "Change My Password" will direct to Change My Password page.
-* Click on "Change Your Email" will direct to Change Your Email page.
 * Click on Logout will direct to Logout page.
 
 ## Main Page:
@@ -58,6 +55,11 @@ All testing cases has been done manually and below are the details:
 * Fill in the email and click on "Reset My Password" will return "We have sent you an e-mail. Please contact us if you do not receive it within a few minutes."
 * If the email not exist will return "The e-mail address is not assigned to any user account."
 * If click on Back to Login will direct to Login Page.
+
+## Profile:
+* Click on Change My Password will direct to Change My Password page.
+* Click on Change Your Email will direct to Change Your Email page.
+* Click on Edit My Profile will direct you to update profile page.
 
 ## Quiz List:
 ### User:
@@ -94,7 +96,7 @@ All testing cases has been done manually and below are the details:
 * Click on "Check My Quizzes" will direct to "My Quizzes" Page.
 * Click on "BACK TO ORDER HISTORY" will direct to "Order History" Page.
 
-## Billing Information:
+## Update Profile:
 * No Field Required, click on Update Information and will save the filled fields.
 * Click on Cancel will direct to Quiz List Page.
 
