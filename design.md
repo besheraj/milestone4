@@ -3,7 +3,7 @@
 ![Main Page Desktop](design/D1.png)
 ![Main Page Desktop](design/D2.png)
 ![Main Page Desktop](design/D3.png)
-![Main Page Desktop](design/D3.png)
+![Main Page Desktop](design/D4.png)
 ## Mobile:
 ![Main Page Mobile](design/M1.png)
 ![Main Page Mobile](design/M2.png)
@@ -94,8 +94,23 @@
 ## Mobile:
 ![My Quizzes Mobile](design/M17.png)
 
-# Order History Empty:
+# Order History :
 ## Desktop:
-![Order History Empty Desktop](design/D18.png)
+![Order History Desktop](design/D18.png)
 ## Mobile:
-![Order History Empty Mobile](design/M18.png)
+![Order History Mobile](design/M18.png)
+
+# Admin Access:
+## Desktop:
+![Admin Desktop](design/D21.png)
+![Admin Desktop](design/D22.png)
+![Admin Desktop](design/D23.png)
+![Admin Desktop](design/D24.png)
+
+## Mobile:
+![Admin Desktop](design/M22.png)
+![Admin Desktop](design/M23.png)
+![Admin Desktop](design/M24.png)
+![Admin Desktop](design/M25.png)
+![Admin Desktop](design/M26.png)
+![Admin Desktop](design/M27.png)
