@@ -39,7 +39,6 @@
 ![Profile Desktop](design/D20.png)
 ## Mobile:
 ![Profile Mobile](design/M21.png)
-![Profile Mobile](design/M22.png)
 
 # Quizz List:
 ## Desktop:
